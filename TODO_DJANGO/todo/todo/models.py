@@ -6,3 +6,4 @@ class TODO(models.Model):
     title = models.CharField(max_length=20)
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.BooleanField(default=False)

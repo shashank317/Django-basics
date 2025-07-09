@@ -43,11 +43,15 @@
 
                 {% for todo in res %}
                 <div class="Todo clickable-div {% if todo.status %}todo-green{% else %}todo-red{% endif %}">
-                    <form method="post" action="">
-                        {% csrf_token %}
-
-                        <!-- <h5><input name="status"required type="submit" {% if todo.status %} checked {% endif %}></h5> -->
-                    </form>
+                    <a href="{% url 'toggle_todo' todo.srno %}" class="todo-toggle">
+                        <div class="todo-status {% if todo.status %}completed{% else %}pending{% endif %}">
+                            {% if todo.status %}
+                                <i class="fa-solid fa-check"></i>
+                            {% else %}
+                                <i class="fa-solid fa-circle"></i>
+                            {% endif %}
+                        </div>
+                    </a>
 
                     <p class="{% if todo.status %} completed {% endif %} ">{{todo.title}}</p>
 
@@ -55,8 +59,8 @@
 
 
                     <div>
-                        <a href=" /edit_todo/{{todo.srno}} "><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href=" /delete_todo/{{todo.srno}} "><i class="fa-solid fa-trash"></i></a>
+                        <a href="/edit_todo/{{todo.srno}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/delete_todo/{{todo.srno}}"><i class="fa-solid fa-trash"></i></a>
 
                         </i>
                     </div>
